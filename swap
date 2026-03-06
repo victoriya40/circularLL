@@ -1,0 +1,82 @@
+
+
+
+
+import java.util.Scanner;
+class Node{
+    int data;
+    Node next;
+    Node(int data){
+        this.data=data;
+        this.next=null;
+    }
+}
+class CircularLL{
+    Node head=null; 
+    void insert(int data){
+        Node newNode=new Node(data);
+        if(head==null){
+            head=newNode;
+            head.next=head;
+        }else{
+            Node temp=head;
+            while(temp.next!=head){ 
+                temp=temp.next;
+            }
+            temp.next=newNode;
+            newNode.next=head;
+        }
+    }
+
+   void swap(){
+    if(head==null||head.next==head){
+        return;
+    }
+    Node slow=head;
+    Node fast=head;
+    while(fast.next!=head){
+        fast=fast.next;
+    }
+            int temp=slow.data;
+            slow.data=fast.data;
+            fast.data=temp;
+            }
+    
+    void display(){
+        if(head==null){
+            System.out.print("list is empty");
+            return;
+        } 
+        Node temp=head;
+        do{
+    
+            System.out.print(temp.data+" ");
+            temp=temp.next;
+        } 
+        while(temp!=head);
+            System.out.println();
+        }
+}
+
+    public class Main {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        CircularLL cll = new CircularLL();
+
+        int n = sc.nextInt();
+
+        
+
+        for (int i = 0; i < n; i++) {
+            int val=sc.nextInt();
+            cll.insert(val);
+        }
+
+        
+
+        cll.swap();
+cll.display();
+}
+}
